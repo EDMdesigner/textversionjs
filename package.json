@@ -1,0 +1,40 @@
+{
+  "name": "textversionjs",
+  "version": "0.0.1",
+  "description": "A tool for generating the text version of an html email.",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EDMdesigner/textversionjs.git"
+  },
+  "keywords": [
+    "email",
+    "html",
+    "text",
+    "version",
+    "plaintext"
+  ],
+  "author": "EDMdesigner.com",
+  "maintainers": [
+    {
+      "name": "Attila Stubendek",
+      "email": "stubendek.attila@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EDMdesigner/textversionjs/issues"
+  },
+  "homepage": "https://github.com/EDMdesigner/textversionjs#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-jscs": "^4.0.0",
+    "gulp-jscs-stylish": "^1.4.0",
+    "gulp-jshint": "^2.0.1",
+    "gulp-jsonlint": "^1.1.2",
+    "jshint": "^2.9.2"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "asi":false,
+  "boss":false,
+  "debug":false,
+  "evil":false,
+  "bitwise":true,
+  "browser":true,
+  "browserify":true,
+  "curly":true,
+  "eqeqeq":true,
+  "funcscope":true,
+  "jasmine":true,
+  "mocha":true,
+  "maxcomplexity":32,
+  "maxdepth":12,
+  "maxparams":12,
+  "nocomma":true,
+  "nonbsp":true,
+  "nonew":true,
+  "notypeof":false,
+  "node":true,
+  "esnext":true,
+  "globals":{
+    "jquery": true,
+    "$": true
+  },
+  "globalstrict":false,
+  "immed":true,
+  "newcap":true,
+  "plusplus":true,
+  "predef":[
+    "$"
+  ],
+  "phantom":true,
+  "shadow":true,
+  "singleGroups":false,
+  "quotmark":"double",
+  "strict":false,
+  "undef":true,
+  "unused":true,
+  "validthis":true,
+  "withstmt":false
+}
