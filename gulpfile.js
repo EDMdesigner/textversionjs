@@ -3,6 +3,7 @@ var jscs = require("gulp-jscs");
 var jshint = require("gulp-jshint");
 var stylish = require("gulp-jscs-stylish");
 var jsonlint = require("gulp-jsonlint");
+var jasmine = require("gulp-jasmine");
 
 var jsFiles = [
 	"./**/*.js",
@@ -45,4 +46,13 @@ gulp.task("jscs", function() {
 		.pipe(jscs.reporter("fail"));
 });
 
-gulp.task("test", ["jsonlint", "jshint", "jscs"]);
+// Test
+// ==================================================
+gulp.task("jasmine", function() {
+	return gulp.src("spec/**/*Spec.js")
+		.pipe(jasmine({
+			verbose: true
+		}));
+});
+
+gulp.task("test", ["jsonlint", "jshint", "jscs", "jasmine"]);

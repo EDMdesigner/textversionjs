@@ -11,7 +11,7 @@ module.exports = function(htmlText, styleConfig) {
 	// define default styleConfig
 	var linkProcess = null;
 	var imgProcess = null;
-	var headingStyle = "plainify"; // hashify, underline
+	var headingStyle = "linebreak"; // hashify, underline
 	var listStyle = "linebreak"; // indention
 	var uIndentionChar = "-";
 	var listIndentionTabs = 3;
@@ -66,7 +66,7 @@ module.exports = function(htmlText, styleConfig) {
 		if(typeof(imgProcess) === "function") {
 			return imgProcess(imSrc, imAlt);
 		}
-		return "\n" + (imAlt)+" ["+ imSrc + "]\n";
+		return "![" + imAlt+"] ("+ imSrc + ")";
 	});
 
 
@@ -103,12 +103,15 @@ module.exports = function(htmlText, styleConfig) {
 	}
 
 	// handle headings
-	if(headingStyle === "underline") {
+	if(headingStyle === "linebreak") {
+		tmp = tmp.replace(/<h([1-6])[^>]*>([^<]*)<\/h\1>/gi, "\n$2\n");
+	}
+	else if(headingStyle === "underline") {
 		tmp = tmp.replace(/<h1[^>]*>([^<]*)<\/h1>/gi, function(str, p1) {
-			return p1 + "\n" + populateChar("=", p1.length) + "\n";
+			return "\n" + p1 + "\n" + populateChar("=", p1.length) + "\n";
 		});
 		tmp = tmp.replace(/<h2[^>]*>([^<]*)<\/h2>/gi, function(str, p1) {
-			return p1 + "\n" + populateChar("-", p1.length) + "\n";
+			return "\n" + p1 + "\n" + populateChar("-", p1.length) + "\n";
 		});
 		tmp = tmp.replace(/<h([3-6])[^>]*>([^<]*)<\/h\1>/gi, function(str, p1, p2) {
 			return "\n" + p2 + "\n";
@@ -116,12 +119,12 @@ module.exports = function(htmlText, styleConfig) {
 	}
 	else if(headingStyle === "hashify") {
 		tmp = tmp.replace(/<h([1-6])[^>]*>([^<]*)<\/h\1>/gi, function(str, p1, p2) {
-			return populateChar("#", p1) + " " + p2 + "\n";
+			return "\n" + populateChar("#", p1) + " " + p2 + "\n";
 		});
 	}
 
 	// replace <br>s, <tr>s, <divs> and <p>s with linebreaks
-	tmp = tmp.replace(/<br[^>]*>|<p[^>]*>|<\/p[^>]*>|<div[^>]*>|<\/div[^>]*>|<tr[^>]*>|<\/tr[^>]*>/gi, "\n");
+	tmp = tmp.replace(/<br( [^>]*)*>|<p( [^>]*)*>|<\/p( [^>]*)*>|<div( [^>]*)*>|<\/div( [^>]*)*>|<tr( [^>]*)*>|<\/tr( [^>]*)*>/gi, "\n");
 
 	// remove all tags except links
 	tmp = tmp.replace(/<[^a\/][^>]*>/gi, "");
@@ -132,7 +135,7 @@ module.exports = function(htmlText, styleConfig) {
 		if(typeof linkProcess === "function") {
 			return linkProcess(href, linkText);
 		}
-		return linkText+" ["+ href + "]";
+		return " [" + linkText+"] ("+ href + ") ";
 	});
 
 	// remove empty lines
@@ -146,6 +149,16 @@ module.exports = function(htmlText, styleConfig) {
 
 	// remove line starter spaces
 	tmp = tmp.replace(/^ +/gi, "");
+
+	// remove first empty line
+	if(tmp.indexOf("\n") === 0){
+		tmp = tmp.substring(1);
+	}
+
+	// put a new line at the end
+	if(tmp.length === 0 || tmp.lastIndexOf("\n") !== tmp.length-1){
+		tmp += "\n";
+	}
 
 	return tmp;
 };

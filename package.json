@@ -2,7 +2,7 @@
   "name": "textversionjs",
   "version": "0.0.1",
   "description": "A tool for generating the text version of an html email.",
-  "main": "src/main.js",
+  "main": "src/textversion.js",
   "scripts": {
     "test": "gulp test"
   },
@@ -31,7 +31,8 @@
   "homepage": "https://github.com/EDMdesigner/textversionjs#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-jscs": "^4.0.0",
+    "gulp-jasmine": "^2.4.0",
+    "gulp-jscs": "3.0.2",
     "gulp-jscs-stylish": "^1.4.0",
     "gulp-jshint": "^2.0.1",
     "gulp-jsonlint": "^1.1.2",
