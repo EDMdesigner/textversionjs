@@ -9,7 +9,7 @@
 title: TextVersionJS
 email: info@edmdesigner.com
 description: > # this means to ignore newlines until "baseurl:"
-  With textversion.js you can easily generate the text version of an HTML email.
+  With TextVersionJS you can easily generate the text version of an HTML email.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://textversionjs.com" # the base hostname & protocol for your site
 gaCode: UA-42954042-7
