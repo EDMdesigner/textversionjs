@@ -1,4 +1,4 @@
-var textVerionsCore = require("../src/textversions");
+var textVerionsCore = require("../src/textversion");
 
 describe("Empty output on empty content input", function(){
 	it("returns empty", function(){
