@@ -6,7 +6,7 @@ var populateChar = function(ch, amount){
 	return result;
 };
 
-module.exports = function(htmlText, styleConfig) {
+function htmlToPlainText(htmlText, styleConfig) {
 
 	// define default styleConfig
 	var linkProcess = null;
@@ -161,4 +161,24 @@ module.exports = function(htmlText, styleConfig) {
 	}
 
 	return tmp;
-};
+}
+
+
+(function (name, definition){
+	if (typeof this.define === "function"){ // AMD
+		this.define(definition);
+	} else if (typeof module !== "undefined" && module.exports) { // Node.js
+		module.exports = definition();
+	} else { // Browser
+		var theModule = definition();
+		var global = this;
+		var old = global[name];
+		theModule.noConflict = function () {
+			global[name] = old;
+			return theModule;
+		};
+		global[name] = theModule;
+	}
+})("createTextVersion", function () {
+	return htmlToPlainText;
+});
