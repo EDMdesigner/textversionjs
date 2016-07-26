@@ -101,6 +101,10 @@ describe("headings", function(){
 		expect(textVerionsCore("<h1>Lorem</h1> ipsum <h2>dolorem</h2> sic <h3>amet</h3> sic amet"))
 			.toEqual("Lorem\n=====\nipsum \ndolorem\n-------\nsic \namet\nsic amet\n");
 	});
+	it("heading with underline other tags within", function(){
+		expect(textVerionsCore("<h1><span>Lorem</span></h1> ipsum <h2>dolorem</h2> sic <h3>amet</h3> sic amet"))
+			.toEqual("Lorem\n=====\nipsum \ndolorem\n-------\nsic \namet\nsic amet\n");
+	});
 	it("heading removal with option linebreak", function(){
 		expect(textVerionsCore("<h1>Lorem</h1> ipsum dolorem sic amet", {headingStyle: "linebreak"}))
 			.toEqual("Lorem\nipsum dolorem sic amet\n");
@@ -139,5 +143,20 @@ describe("lists", function(){
 	it("combined ulist and olist removal with starting value and option indention and other styles", function(){
 		expect(textVerionsCore("<ol start=\"3\"><li>Lorem</li><li><ul><li>ipsum</li><li>dolorem</li></ul></li></ol>sic amet", {listStyle: "indention", oIndentionChar: "=", uIndentionChar: "=", listIndentionTabs: "2"}))
 			.toEqual("3=Lorem\n4===ipsum\n====dolorem\nsic amet\n");
+	});
+});
+
+describe("remove full blocks when needed", function(){
+	it("remove body scripts", function(){
+		expect(textVerionsCore("<script>var a=2</script>\nLorem ipsum dolorem <script type=\"text/js\">alert(\"hello world\");\nalert(\"nothing\")</script>sic amet</div>"))
+			.toEqual("Lorem ipsum dolorem sic amet\n");
+	});
+	it("remove body styles", function(){
+		expect(textVerionsCore("<style>div {\n    display: block;\n}</style>\nLorem ipsum dolorem <style type=\"text/css\">.page-content {\npadding: 30px 0;\n}\n</style>sic amet</div>"))
+			.toEqual("Lorem ipsum dolorem sic amet\n");
+	});
+	it("remove body comments", function(){
+		expect(textVerionsCore("Lorem ipsum dolorem <!--foo\nfoo--> sic amet<!--foo-->"))
+			.toEqual("Lorem ipsum dolorem sic amet\n");
 	});
 });

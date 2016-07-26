@@ -51,6 +51,12 @@ function htmlToPlainText(htmlText, styleConfig) {
 	tmp = tmp.replace(/<\/body>.*/i, "");
 	tmp = tmp.replace(/.*<body[^>]*>/i, "");
 
+	// remove inbody scripts and styles
+	tmp = tmp.replace(/<(script|style)( [^>]*)*>((?!<\/\1( [^>]*)*>).)*<\/\1>/gi, "");
+
+	// remove all tags except that are being handled separately
+	tmp = tmp.replace(/<((?!h[1-6]( [^>]*)*>)(?!img( [^>]*)*>)(?!a( [^>]*)*>)(?!ul( [^>]*)*>)(?!ol( [^>]*)*>)(?!li( [^>]*)*>)(?!p( [^>]*)*>)(?!div( [^>]*)*>)(?!tr( [^>]*)*>)(?!br( [^>]*)*>)[^>])*>/gi, "");
+
 	// remove or replace images - replacement texts with <> tags will be removed also, if not intentional, try to use other notation
 	tmp = tmp.replace(/<img([^>]*)>/gi, function(str, imAttrs) {
 		var imSrc = "";
@@ -110,13 +116,13 @@ function htmlToPlainText(htmlText, styleConfig) {
 		tmp = tmp.replace(/<h([1-6])[^>]*>([^<]*)<\/h\1>/gi, "\n$2\n");
 	}
 	else if(headingStyle === "underline") {
-		tmp = tmp.replace(/<h1[^>]*>([^<]*)<\/h1>/gi, function(str, p1) {
+		tmp = tmp.replace(/<h1[^>]*>(((?!<\/h1>).)*)<\/h1>/gi, function(str, p1) {
 			return "\n" + p1 + "\n" + populateChar("=", p1.length) + "\n";
 		});
-		tmp = tmp.replace(/<h2[^>]*>([^<]*)<\/h2>/gi, function(str, p1) {
+		tmp = tmp.replace(/<h2[^>]*>(((?!<\/h2>).)*)<\/h2>/gi, function(str, p1) {
 			return "\n" + p1 + "\n" + populateChar("-", p1.length) + "\n";
 		});
-		tmp = tmp.replace(/<h([3-6])[^>]*>([^<]*)<\/h\1>/gi, function(str, p1, p2) {
+		tmp = tmp.replace(/<h([3-6])[^>]*>(((?!<\/h\1>).)*)<\/h\1>/gi, function(str, p1, p2) {
 			return "\n" + p2 + "\n";
 		});
 	}
@@ -128,10 +134,6 @@ function htmlToPlainText(htmlText, styleConfig) {
 
 	// replace <br>s, <tr>s, <divs> and <p>s with linebreaks
 	tmp = tmp.replace(/<br( [^>]*)*>|<p( [^>]*)*>|<\/p( [^>]*)*>|<div( [^>]*)*>|<\/div( [^>]*)*>|<tr( [^>]*)*>|<\/tr( [^>]*)*>/gi, "\n");
-
-	// remove all tags except links
-	tmp = tmp.replace(/<[^a\/][^>]*>/gi, "");
-	tmp = tmp.replace(/<\/[^a][^>]*>/gi, "");
 
 	// replace <a href>b<a> links with b (href) or as described in the linkProcess function
 	tmp = tmp.replace(/<a[^>]*href="([^"]*)"[^>]*>([^<]+)<\/a[^>]*>/gi, function(str, href, linkText) {
