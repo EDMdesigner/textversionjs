@@ -99,11 +99,11 @@ describe("image replace", function(){
 describe("headings", function(){
 	it("simple heading with underline", function(){
 		expect(textVerionsCore("<h1>Lorem</h1> ipsum <h2>dolorem</h2> sic <h3>amet</h3> sic amet"))
-			.toEqual("Lorem\n=====\nipsum \ndolorem\n-------\nsic \namet\nsic amet\n");
+			.toEqual("Lorem\n=====\n\nipsum \n\ndolorem\n-------\n\nsic \n\namet\n\nsic amet\n");
 	});
 	it("heading with underline other tags within", function(){
 		expect(textVerionsCore("<h1><span>Lorem</span></h1> ipsum <h2>dolorem</h2> sic <h3>amet</h3> sic amet"))
-			.toEqual("Lorem\n=====\nipsum \ndolorem\n-------\nsic \namet\nsic amet\n");
+			.toEqual("Lorem\n=====\n\nipsum \n\ndolorem\n-------\n\nsic \n\namet\n\nsic amet\n");
 	});
 	it("heading removal with option linebreak", function(){
 		expect(textVerionsCore("<h1>Lorem</h1> ipsum dolorem sic amet", {headingStyle: "linebreak"}))
@@ -111,7 +111,7 @@ describe("headings", function(){
 	});
 	it("heading removal with option hashify", function(){
 		expect(textVerionsCore("<h1>Lorem</h1> ipsum <h2>dolorem</h2> sic <h4>amet</h4> sic amet", {headingStyle: "hashify"}))
-			.toEqual("# Lorem\nipsum \n## dolorem\nsic \n#### amet\nsic amet\n");
+			.toEqual("# Lorem\n\nipsum \n\n## dolorem\n\nsic \n\n#### amet\n\nsic amet\n");
 	});
 });
 

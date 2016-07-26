@@ -55,7 +55,7 @@ function htmlToPlainText(htmlText, styleConfig) {
 	tmp = tmp.replace(/<(script|style)( [^>]*)*>((?!<\/\1( [^>]*)*>).)*<\/\1>/gi, "");
 
 	// remove all tags except that are being handled separately
-	tmp = tmp.replace(/<((?!h[1-6]( [^>]*)*>)(?!img( [^>]*)*>)(?!a( [^>]*)*>)(?!ul( [^>]*)*>)(?!ol( [^>]*)*>)(?!li( [^>]*)*>)(?!p( [^>]*)*>)(?!div( [^>]*)*>)(?!tr( [^>]*)*>)(?!br( [^>]*)*>)[^>])*>/gi, "");
+	tmp = tmp.replace(/<((?!h[1-6]( [^>]*)*>)(?!img( [^>]*)*>)(?!a( [^>]*)*>)(?!ul( [^>]*)*>)(?!ol( [^>]*)*>)(?!li( [^>]*)*>)(?!p( [^>]*)*>)(?!div( [^>]*)*>)(?!td( [^>]*)*>)(?!br( [^>]*)*>)[^>])*>/gi, "");
 
 	// remove or replace images - replacement texts with <> tags will be removed also, if not intentional, try to use other notation
 	tmp = tmp.replace(/<img([^>]*)>/gi, function(str, imAttrs) {
@@ -117,23 +117,23 @@ function htmlToPlainText(htmlText, styleConfig) {
 	}
 	else if(headingStyle === "underline") {
 		tmp = tmp.replace(/<h1[^>]*>(((?!<\/h1>).)*)<\/h1>/gi, function(str, p1) {
-			return "\n" + p1 + "\n" + populateChar("=", p1.length) + "\n";
+			return "\n&nbsp;\n" + p1 + "\n" + populateChar("=", p1.length) + "\n&nbsp;\n";
 		});
 		tmp = tmp.replace(/<h2[^>]*>(((?!<\/h2>).)*)<\/h2>/gi, function(str, p1) {
-			return "\n" + p1 + "\n" + populateChar("-", p1.length) + "\n";
+			return "\n&nbsp;\n" + p1 + "\n" + populateChar("-", p1.length) + "\n&nbsp;\n";
 		});
 		tmp = tmp.replace(/<h([3-6])[^>]*>(((?!<\/h\1>).)*)<\/h\1>/gi, function(str, p1, p2) {
-			return "\n" + p2 + "\n";
+			return "\n&nbsp;\n" + p2 + "\n&nbsp;\n";
 		});
 	}
 	else if(headingStyle === "hashify") {
 		tmp = tmp.replace(/<h([1-6])[^>]*>([^<]*)<\/h\1>/gi, function(str, p1, p2) {
-			return "\n" + populateChar("#", p1) + " " + p2 + "\n";
+			return "\n&nbsp;\n" + populateChar("#", p1) + " " + p2 + "\n&nbsp;\n";
 		});
 	}
 
-	// replace <br>s, <tr>s, <divs> and <p>s with linebreaks
-	tmp = tmp.replace(/<br( [^>]*)*>|<p( [^>]*)*>|<\/p( [^>]*)*>|<div( [^>]*)*>|<\/div( [^>]*)*>|<tr( [^>]*)*>|<\/tr( [^>]*)*>/gi, "\n");
+	// replace <br>s, <td>s, <divs> and <p>s with linebreaks
+	tmp = tmp.replace(/<br( [^>]*)*>|<p( [^>]*)*>|<\/p( [^>]*)*>|<div( [^>]*)*>|<\/div( [^>]*)*>|<td( [^>]*)*>|<\/td( [^>]*)*>/gi, "\n");
 
 	// replace <a href>b<a> links with b (href) or as described in the linkProcess function
 	tmp = tmp.replace(/<a[^>]*href="([^"]*)"[^>]*>([^<]+)<\/a[^>]*>/gi, function(str, href, linkText) {
@@ -143,20 +143,23 @@ function htmlToPlainText(htmlText, styleConfig) {
 		return " [" + linkText+"] ("+ href + ") ";
 	});
 
-	// remove empty lines
-	tmp = tmp.replace(/\n[ \t]*/gi, "\n");
+	// remove whitespace from empty lines excluding nbsp
+	tmp = tmp.replace(/\n[ \t\f]*/gi, "\n");
 
-	// remove duplicated newlines
+	// remove duplicated empty lines
 	tmp = tmp.replace(/\n\n+/gi, "\n");
 
 	// remove duplicated spaces including non braking spaces
 	tmp = tmp.replace(/( |&nbsp;|\t)+/gi, " ");
 
 	// remove line starter spaces
+	tmp = tmp.replace(/\n +/gi, "\n");
+
+	// remove content starter spaces
 	tmp = tmp.replace(/^ +/gi, "");
 
 	// remove first empty line
-	if(tmp.indexOf("\n") === 0){
+	while(tmp.indexOf("\n") === 0){
 		tmp = tmp.substring(1);
 	}
 
