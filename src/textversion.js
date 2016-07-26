@@ -11,8 +11,8 @@ function htmlToPlainText(htmlText, styleConfig) {
 	// define default styleConfig
 	var linkProcess = null;
 	var imgProcess = null;
-	var headingStyle = "linebreak"; // hashify, underline
-	var listStyle = "linebreak"; // indention
+	var headingStyle = "underline"; // hashify, breakline
+	var listStyle = "indention"; // indention
 	var uIndentionChar = "-";
 	var listIndentionTabs = 3;
 	var oIndentionChar = "-";
@@ -65,6 +65,9 @@ function htmlToPlainText(htmlText, styleConfig) {
 		}
 		if(typeof(imgProcess) === "function") {
 			return imgProcess(imSrc, imAlt);
+		}
+		if(imAlt === ""){
+			return "![image] ("+ imSrc + ")";
 		}
 		return "![" + imAlt+"] ("+ imSrc + ")";
 	});

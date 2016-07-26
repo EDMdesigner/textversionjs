@@ -72,6 +72,10 @@ describe("image replace", function(){
 		expect(textVerionsCore("Lorem <img src=\"imagelink\" alt=\"ipsum\"> dolorem sic amet"))
 			.toEqual("Lorem ![ipsum] (imagelink) dolorem sic amet\n");
 	});
+	it("simple image replacement if no alt is present", function(){
+		expect(textVerionsCore("Lorem <img src=\"imagelink\" alt=\"\"> dolorem sic amet"))
+			.toEqual("Lorem ![image] (imagelink) dolorem sic amet\n");
+	});
 	it("image replacement with function", function(){
 		expect(textVerionsCore("Lorem <img src=\"imagelink\" alt=\"ipsum\"> dolorem sic amet", {imgProcess: function(src, imAlt){
 			return " {" + imAlt+"} ["+ src + "] ";
@@ -93,13 +97,13 @@ describe("image replace", function(){
 });
 
 describe("headings", function(){
-	it("simple heading removal", function(){
-		expect(textVerionsCore("<h1>Lorem</h1> ipsum dolorem sic amet"))
-			.toEqual("Lorem\nipsum dolorem sic amet\n");
-	});
-	it("heading removal with option underline", function(){
-		expect(textVerionsCore("<h1>Lorem</h1> ipsum <h2>dolorem</h2> sic <h3>amet</h3> sic amet", {headingStyle: "underline"}))
+	it("simple heading with underline", function(){
+		expect(textVerionsCore("<h1>Lorem</h1> ipsum <h2>dolorem</h2> sic <h3>amet</h3> sic amet"))
 			.toEqual("Lorem\n=====\nipsum \ndolorem\n-------\nsic \namet\nsic amet\n");
+	});
+	it("heading removal with option linebreak", function(){
+		expect(textVerionsCore("<h1>Lorem</h1> ipsum dolorem sic amet", {headingStyle: "linebreak"}))
+			.toEqual("Lorem\nipsum dolorem sic amet\n");
 	});
 	it("heading removal with option hashify", function(){
 		expect(textVerionsCore("<h1>Lorem</h1> ipsum <h2>dolorem</h2> sic <h4>amet</h4> sic amet", {headingStyle: "hashify"}))
@@ -108,12 +112,12 @@ describe("headings", function(){
 });
 
 describe("lists", function(){
-	it("simple ulist removal", function(){
-		expect(textVerionsCore("<ul><li>Lorem</li><li>ipsum</li></ul> dolorem sic amet"))
+	it("ulist removal with option linebreak", function(){
+		expect(textVerionsCore("<ul><li>Lorem</li><li>ipsum</li></ul> dolorem sic amet", {listStyle: "linebreak"}))
 			.toEqual("Lorem\nipsum\ndolorem sic amet\n");
 	});
-	it("ulist removal with option indention", function(){
-		expect(textVerionsCore("<ul><li>Lorem</li><li>ipsum</li></ul> dolorem sic amet", {listStyle: "indention"}))
+	it("simple ulist removal", function(){
+		expect(textVerionsCore("<ul><li>Lorem</li><li>ipsum</li></ul> dolorem sic amet"))
 			.toEqual("---Lorem\n---ipsum\ndolorem sic amet\n");
 	});
 	it("ulist removal with option indention and other styles", function(){
@@ -122,11 +126,11 @@ describe("lists", function(){
 	});
 	it("simple olist removal", function(){
 		expect(textVerionsCore("<ol><li>Lorem</li><li>ipsum</li></ol> dolorem sic amet"))
-			.toEqual("Lorem\nipsum\ndolorem sic amet\n");
-	});
-	it("olist removal with option indention", function(){
-		expect(textVerionsCore("<ol><li>Lorem</li><li>ipsum</li></ol> dolorem sic amet", {listStyle: "indention"}))
 			.toEqual("1--Lorem\n2--ipsum\ndolorem sic amet\n");
+	});
+	it("olist removal with option linebreak", function(){
+		expect(textVerionsCore("<ol><li>Lorem</li><li>ipsum</li></ol> dolorem sic amet", {listStyle: "linebreak"}))
+			.toEqual("Lorem\nipsum\ndolorem sic amet\n");
 	});
 	it("olist removal with starting value and option indention and other styles", function(){
 		expect(textVerionsCore("<ol start=\"3\"><li>Lorem</li><li>ipsum</li></ol> dolorem sic amet", {listStyle: "indention", oIndentionChar: "=", listIndentionTabs: "4"}))
