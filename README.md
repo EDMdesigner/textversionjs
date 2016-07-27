@@ -1,6 +1,6 @@
 # textversionjs
 
-Generate the text verion of your HTML email in a second.
+Generate the text version of your HTML email in a second.
 
 This tool is an open source project. Feel free to use it any time in your projects!
 
@@ -39,7 +39,7 @@ linkText    | string   | Yes          |               | The text of the link
 Param       | Type     | Required     | Default value | Description
 ---         |---       |---           |---            |---
 src         | string   | Yes          |               | The source (src property) of the image
-alt         | string   | Yes          |               | The alternative text (alt propery) of the image
+alt         | string   | Yes          |               | The alternative text (alt property) of the image
 
 ### Examples
 
@@ -127,8 +127,8 @@ plainText = textVersion.htmlToPlainText(htmlText, styleConfig);
 // returns "
 // ..Lorem
 // ..ipsum
-// 1.Lorem
-// 2.ipsum"
+// 3.Lorem
+// 4.ipsum"
 ```
 
 Try it online in our [Demo page](http://emailtextversion.com/)!
