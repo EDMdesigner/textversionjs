@@ -111,11 +111,11 @@ var textVersion = require("textversionjs");
 var htmlText = "<ul>" +
 					"<li>Lorem</li>" +
 					"<li>ipsum</li>" +
-				</ul>;
+				"</ul>" +
 				"<ol>" +
 					"<li start=\"3\">Lorem</li>" +
 					"<li>ipsum</li>" +
-				</ol>;
+				"</ol>";
 
 var styleConfig: {
 	headingStyle: "indention",
