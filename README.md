@@ -19,8 +19,8 @@ styleConfig | json     | No           |               | Options for converting
 
 Param             | Type     | Required     | Default value | Description
 ---               |---       |---           |---            |---
-linkProcess       | function | No           |               | Callback function to costumize links appearance
-imgProcess        | function | No           |               | Callback function to costumize image appearance
+linkProcess       | function | No           |               | Callback function to customize links appearance
+imgProcess        | function | No           |               | Callback function to customize image appearance
 headingStyle      | string   | No           | "underline"   | Define heading appearance, options: "underline", "linebreak", "hashify"
 listStyle         | string   | No           | "indention"   | Define list appearance, options: "indention", "linebreak"
 uIndentionChar    | string   | No           | "-"           | If listStyle is indention, uIndentionChar is the character that fills the indention for unordered lists
@@ -67,7 +67,7 @@ plainText = textVersion.htmlToPlainText(htmlText);
 
 ```
 
-#### Costumize link appearance
+#### Customize link appearance
 
 ```js
 var textVersion = require("textversionjs");
@@ -84,7 +84,7 @@ plainText = textVersion.htmlToPlainText(htmlText, styleConfig);
 
 ```
 
-#### Costumize headings
+#### Customize headings
 
 ```js
 var textVersion = require("textversionjs");
@@ -104,7 +104,7 @@ plainText = textVersion.htmlToPlainText(htmlText, styleConfig);
 
 ```
 
-#### Costumize lists
+#### Customize lists
 
 ```js
 var textVersion = require("textversionjs");
