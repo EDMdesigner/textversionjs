@@ -77,7 +77,7 @@ var styleConfig: {
 	linkStyle: function(href, linkText){
 		return linkText + " " + "(" + href + ")";
 	}
-}
+};
 
 plainText = textVersion.htmlToPlainText(htmlText, styleConfig);
 // returns "Lorem ipsum (http://foo.foo) dolor sic amet"
@@ -94,7 +94,7 @@ var htmlText = "<h1>Lorem ipsum</h1>" +
 
 var styleConfig: {
 	headingStyle: "hashify"
-}
+};
 
 plainText = textVersion.htmlToPlainText(htmlText, styleConfig);
 // returns
@@ -121,14 +121,14 @@ var styleConfig: {
 	headingStyle: "indention",
 	uIndentionChar: ".";
 	listIndentionTabs: 2;
-}
+};
 
 plainText = textVersion.htmlToPlainText(htmlText, styleConfig);
 // returns "
-..Lorem
-..ipsum
-1.Lorem
-2.ipsum"
+// ..Lorem
+// ..ipsum
+// 1.Lorem
+// 2.ipsum"
 ```
 
 Try it online in our [Demo page](http://emailtextversion.com/)!
