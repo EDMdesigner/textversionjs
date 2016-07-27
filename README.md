@@ -58,7 +58,7 @@ var htmlText = "<html>" +
 					"</body>" +
 				"</html>";
 
-plainText = textVersion.htmlToPlainText(htmlText);
+var plainText = textVersion.htmlToPlainText(htmlText);
 // returns
 // "Lorem ipsum [dolor] (http://foo.foo) sic amet
 // Lorem ipsum ![foo] (http://foo.jpg) sic amet
@@ -79,7 +79,7 @@ var styleConfig: {
 	}
 };
 
-plainText = textVersion.htmlToPlainText(htmlText, styleConfig);
+var plainText = textVersion(htmlText, styleConfig);
 // returns "Lorem ipsum (http://foo.foo) dolor sic amet"
 
 ```
@@ -96,7 +96,7 @@ var styleConfig: {
 	headingStyle: "hashify"
 };
 
-plainText = textVersion.htmlToPlainText(htmlText, styleConfig);
+var plainText = textVersion(htmlText, styleConfig);
 // returns
 // "# Lorem ipsum
 //
@@ -123,7 +123,7 @@ var styleConfig: {
 	listIndentionTabs: 2;
 };
 
-plainText = textVersion.htmlToPlainText(htmlText, styleConfig);
+var plainText = textVersion(htmlText, styleConfig);
 // returns "
 // ..Lorem
 // ..ipsum
