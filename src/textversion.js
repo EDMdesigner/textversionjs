@@ -12,7 +12,7 @@ function htmlToPlainText(htmlText, styleConfig) {
 	var linkProcess = null;
 	var imgProcess = null;
 	var headingStyle = "underline"; // hashify, breakline
-	var listStyle = "indention"; // indention
+	var listStyle = "indention"; // indention, linebreak
 	var uIndentionChar = "-";
 	var listIndentionTabs = 3;
 	var oIndentionChar = "-";
