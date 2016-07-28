@@ -58,7 +58,7 @@ var htmlText = "<html>" +
 					"</body>" +
 				"</html>";
 
-var plainText = textVersion.htmlToPlainText(htmlText);
+var plainText = textVersion(htmlText);
 // returns
 // "Lorem ipsum [dolor] (http://foo.foo) sic amet
 // Lorem ipsum ![foo] (http://foo.jpg) sic amet
