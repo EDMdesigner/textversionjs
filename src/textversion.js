@@ -173,7 +173,7 @@ function htmlToPlainText(htmlText, styleConfig) {
 
 
 (function (name, definition){
-	if (typeof this.define === "function"){ // AMD
+	if (this && typeof this.define === "function"){ // AMD
 		this.define(definition);
 	} else if (typeof module !== "undefined" && module.exports) { // Node.js
 		module.exports = definition();
