@@ -160,3 +160,18 @@ describe("remove full blocks when needed", function(){
 			.toEqual("Lorem ipsum dolorem sic amet\n");
 	});
 });
+
+describe("pasting from editors", function(){
+	it("google doc styling meta tag", function(){
+		expect(textVerionsCore("<meta charset=\"utf-8\"><span style=\"font-size:30.666666666666664px;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\">line 1</span>"))
+			.toEqual("line 1\n");
+	});
+	it("ms word styling <o:p>", function(){
+		expect(textVerionsCore("<span lang=EN-US style='font-size:10.5pt;line-height:107%; font-family:\"Arial\",sans-serif;color:#333333;mso-ansi-language:EN-US'>Line 2</span><span lang=EN-US style='mso-ansi-language:EN-US'><o:p></o:p></span>"))
+			.toEqual("Line 2\n");
+	});
+	it("fix special tag endings", function(){
+		expect(textVerionsCore("<span test=\"a \" lang=EN-US style='font-size:10.5pt;line-height:107%; font-family:\"Arial\",sans-serif;color:#333333;mso-ansi-language:EN-US'>A</span>"))
+			.toEqual("A\n");
+	});
+});
