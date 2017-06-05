@@ -82,8 +82,8 @@ function htmlToPlainText(htmlText, styleConfig) {
 	function createListReplaceCb() {
 		return function(match, listType, listAttributes, listBody) {
 			var liIndex = 0;
-			if(listAttributes && /start="([0-9])+"/i.test(listAttributes)) {
-				liIndex = (/start="([0-9])"/i.exec(listAttributes)[1])-1;
+			if(listAttributes && /start="([0-9]+)"/i.test(listAttributes)) {
+				liIndex = (/start="([0-9]+)"/i.exec(listAttributes)[1])-1;
 			}
 			var plainListItem = "<p>" + listBody.replace(/<li[^>]*>(((?!<li[^>]*>)(?!<\/li>).)*)<\/li>/gi, function(str, listItem) {
 				var actSubIndex = 0;
