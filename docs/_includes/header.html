@@ -1,0 +1,56 @@
+
+<header class="site-header">
+  <div id="header" class="bg-dark-brown">
+    <div id="menu" class="bg-white sm-padding-tb">
+      
+      <div class="container800">
+        
+        <div class="cols reorder">
+          <div class="w30p">
+            <a class="site-title" href="{{ site.baseurl }}/"><img class="w200" src="{{ site.baseurl }}/img/logo.png" /></a>
+            
+          </div>
+          
+          <div class="w70p cols">
+            <nav class="site-nav">
+              
+              <div class="trigger"> 
+                <a class="page-link" href="https://edmdesigner.com/drag-and-drop-responsive-email-editor-api">API</a>
+                <a class="page-link" href="https://edmdesigner.com/responsive-email-editor-for-end-users">APP</a>
+                <a class="page-link" href="https://edmdesigner.com/email-content-management-system">ECMS</a>
+                <a class="page-link" href="https://edmdesigner.com/jobs">JOBS</a>
+                <a class="page-link" href="https://blog.edmdesigner.com/">BLOG</a>
+                {% for my_page in site.pages %}
+                {% if my_page.title %}
+                <a class="page-link" href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.title }}</a>
+                {% endif %}
+                {% endfor %}
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+      <a href="https://github.com/EDMdesigner/bulletprooflist">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" />
+      </a> 
+
+      
+    </div>
+    
+    <div id="hero" class="l-padding-tb">
+      <div class="container800">
+        <h1>{{site.title}}</h1>
+        <p>
+            {{ site.description }}
+        </p>
+        
+        <a class="button bg-red" href="https://github.com/EDMdesigner/bulletprooflist">
+          Fork me on Github
+        </a>
+      </div>
+    </div>
+    
+  </div>
+</header>
+  
+  

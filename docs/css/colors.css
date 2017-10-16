@@ -1,0 +1,47 @@
+body {
+	background-color: #F4F4F4;
+}
+
+a {
+	color: #58585A;
+}
+
+.bg-white {
+	background-color: #FFFFFF;
+	color: #58585A;
+}
+
+.bg-brown {
+	background-color: #F8F7F0;
+	color: #58585A;
+}
+
+.bg-gray {
+	background-color: #58585A;
+	color: #FFFFFF;
+}
+
+.bg-red {
+	background-color: #C92C1E;
+	color: #FFFFFF;
+}
+
+.bg-red-hover:hover {
+	background-color: #C92C1E;
+	color: #FFFFFF;
+}
+
+.bg-blue {
+	background-color: #2879CB;
+	color: #FFFFFF;
+}
+
+.bg-blue-hover:hover {
+	background-color: #2879CB;
+	color: #FFFFFF;
+}
+
+.bg-dark-brown {
+	background-color: #E8E3CE;
+	color: #58585A;
+}
