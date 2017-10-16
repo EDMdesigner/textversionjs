@@ -38,6 +38,10 @@
 	margin-top: -5px;
 }
 
+.socials {
+	display: flex;
+}
+
 .socials a {
     display: inline-block;
     width: 28px;

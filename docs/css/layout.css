@@ -30,7 +30,7 @@
 
 .cols > .w20p {
 	width: 20%;
-	float: left;
+	flex-grow: 1;
 }
 
 .cols:after {

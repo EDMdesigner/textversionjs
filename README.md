@@ -133,6 +133,6 @@ var plainText = textVersion(htmlText, styleConfig);
 
 Try it online in our [Demo page](http://emailtextversion.com/)!
 
-Don't forget to check out our other open source projects at [EDMdesigner](http://edmdesigner.com/).
+Don't forget to check out our other open source projects at [EDMdesigner](https://edmdesigner.com/).
 
 Follow us on [github](https://github.com/EDMdesigner) and [twitter](https://twitter.com/EDMdesigner)!
