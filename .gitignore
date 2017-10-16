@@ -1,1 +1,5 @@
 node_modules
+coverage
+junitresults.xml
+docs/_site
+docs/.sass-cache
