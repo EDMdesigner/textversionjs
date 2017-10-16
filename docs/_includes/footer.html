@@ -1,74 +1,26 @@
-<!-- <footer class="site-footer bg-gray">
-
-  <div class="wrapper">
-    <p>Don't forget to check out our <a title="Open source projects for email related projects" href="https://github.com/EDMdesigner">other open source projects</a> at <a title="Software components for email businesses" href="https://edmdesigner.com">EDMdesigner</a>.</p>
-
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li>{{ site.title }}</li>
-          <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col footer-col-2">
-        <ul class="social-media-list">
-          {% if site.github_username %}
-          <li>
-            {% include icon-github.html username=site.github_username %}
-          </li>
-          {% endif %}
-
-          {% if site.twitter_username %}
-          <li>
-            {% include icon-twitter.html username=site.twitter_username %}
-          </li>
-          {% endif %}
-        </ul>
-      </div>
-
-      <div class="footer-col footer-col-3">
-        <p>{{ site.description }}</p>
-      </div>
-    </div>
-  </div>
-</footer> -->
-
-<!-- 
-{% if site.github_username %}
-<div class="w20p">
-    <a id="f-fb" href="#">Facebook</a>
-  </div>
-<li>
-  {% include icon-github.html username=site.github_username %}
-</li>
-{% endif %}
-
-{% if site.twitter_username %}
-<li>
-  {% include icon-twitter.html username=site.twitter_username %}
-</li>
-{% endif %} -->
-
-
 <div id="footer" class="bg-gray sm-padding-tb center">
 		<div class="container600">
-			<div class="socials cols">
+			<div class="socials cols" style="display:flex;">
+        {% if site.facebook_username %}
 				<div class="w20p">
-					<a id="f-fb" href="#">Facebook</a>
-				</div>
+					<a id="f-fb" href="https://facebook.com/{{ site.facebook_username }}">Facebook</a>
+        </div>
+        {% endif %}
+        {% if site.twitter_username %}
 				<div class="w20p">
-					<a id="f-tw" href="#">Twitter</a>
-				</div>
+					<a id="f-tw" href="https://twitter.com/{{ site.twitter_username }}">Twitter</a>
+        </div>
+        {% endif %}        
+        {% if site.linkedin_username %}
 				<div class="w20p">
-					<a id="f-ln" href="#">LinkedIn</a>
-				</div>
+					<a id="f-ln" href="https://linkedin.com/{{ site.linkedin_username }}">LinkedIn</a>
+        </div>
+        {% endif %}
+        {% if site.google_username %}
 				<div class="w20p">
-					<a id="f-gp" href="#">Google+</a>
-				</div>
-				<div class="w20p">
-					<a id="f-rss" href="#">RSS</a>
-				</div>
+					<a id="f-gp" href="https://plus.google.com/{{ site.github_username }}">Google+</a>
+        </div>
+        {% endif %}
 			</div>
 			<p>
 				2017 @ COPYRIGHT - EDMDESIGNER

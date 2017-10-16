@@ -6,15 +6,18 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: Email Text Version
+title: TextVersionJS
 email: info@edmdesigner.com
 description: > # this means to ignore newlines until "baseurl:"
   Generate the text version of your HTML email in a second.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://emailtextversion.com" # the base hostname & protocol for your site
+url: "http://textversionjs.com" # the base hostname & protocol for your site
 gaCode: UA-42954042-8
+facebook_username: EDMdesigner
 twitter_username: EDMdesigner
-github_username:  EDMdesigner
+github_username: EDMdesigner
+linkedin_username: company/edmdesigner-com
+google_username: +Edmdesigner
 
 # Build settings
 markdown: kramdown
