@@ -13,7 +13,7 @@ description: > # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://textversionjs.com" # the base hostname & protocol for your site
 gaCode: UA-42954042-8
-facebook_username: EDMdesigner
+facebook_username: edmdesigner
 twitter_username: EDMdesigner
 github_username: EDMdesigner
 linkedin_username: company/edmdesigner-com
