@@ -1,58 +1,70 @@
+"use strict";
+
 var gulp = require("gulp");
-var jscs = require("gulp-jscs");
-var jshint = require("gulp-jshint");
-var stylish = require("gulp-jscs-stylish");
-var jsonlint = require("gulp-jsonlint");
-var jasmine = require("gulp-jasmine");
+var createSuperGulp = require("edm-supergulp");
+
+var superGulp = createSuperGulp({
+	gulp: gulp
+});
+
+var packageJson = require("./package.json");
 
 var jsFiles = [
-	"./**/*.js",
-	"!node_modules/**/*"
+	"./*.js",
+	"./src/**/*.js",
+	"./spec/**/*.js",
+	"./examples/*.js"
 ];
 
 var jsonFiles = [
 	".jshintrc",
-	".jscsrc"
+	".jscsrc",
+	"./package.json",
+	"./src/**/*.json",
+	"./spec/**/*.json",
+	"./examples/*.json"
 ];
 
-// JSON lint
-// ==================================================
-gulp.task("jsonlint", function() {
-	return gulp.src(jsonFiles)
-		.pipe(jsonlint())
-		.pipe(jsonlint.failOnError());
+var specFiles = [
+	"spec/**/*Spec.js"
+];
+
+var sourceFiles = [
+	"src/**/*.js"
+];
+
+superGulp.taskTemplates.initFrontendTasks({
+	packageJson: packageJson,
+	coverage: 70,
+	files: {
+		js: jsFiles,
+		json: jsonFiles,
+		spec: specFiles,
+		source: sourceFiles
+	},
+	tasks: {
+		copy: {
+			common: [
+				{ files: "./img/*", dest: "./dist/img/"},
+				{ files: "./lib/**/*", dest: "./dist/lib/"},
+				{ files: "./example/fonts/*", dest: "./dist/lib/fonts/"},
+				{ files: "./css/*", dest: "./dist/"}
+			],
+			dev: [
+				{ files: "./example/css/*", dest: "./dist/"},
+				{ files: "./example/index.html", dest: "./dist/"},
+				{ files: "./example/img/*", dest: "./dist/img/"},
+			]
+		},
+		js: {
+			common: [
+				{
+					entries: ["./src/textversion.js"],
+					outputFileName: "textversion.js",
+					standaloneName: "textversion",
+					destFolder: "./docs/js/"
+				}
+			]
+		}
+	}
 });
-
-
-// JS Hint
-// ==================================================
-gulp.task("jshint", function() {
-	return gulp.src(jsFiles)
-		.pipe(jshint(".jshintrc"))
-		.pipe(jshint.reporter("jshint-stylish"))
-		.pipe(jshint.reporter("fail"));
-});
-
-
-// JS CodeStyle
-// ==================================================
-gulp.task("jscs", function() {
-	return gulp.src(jsFiles)
-		.pipe(jscs({
-			configPath: ".jscsrc",
-			fix: true
-		}))
-		.pipe(stylish())
-		.pipe(jscs.reporter("fail"));
-});
-
-// Test
-// ==================================================
-gulp.task("jasmine", function() {
-	return gulp.src("spec/**/*Spec.js")
-		.pipe(jasmine({
-			verbose: true
-		}));
-});
-
-gulp.task("test", ["jsonlint", "jshint", "jscs", "jasmine"]);

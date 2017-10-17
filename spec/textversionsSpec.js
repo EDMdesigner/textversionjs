@@ -138,7 +138,7 @@ describe("lists", function(){
 	});
 	it("olist removal with starting value and option indention and other styles", function(){
 		expect(textVerionsCore("<ol start=\"31\"><li>Lorem</li><li>ipsum</li></ol> dolorem sic amet", {listStyle: "indention", oIndentionChar: "=", listIndentionTabs: "4"}))
-			.toEqual("31===Lorem\n32===ipsum\ndolorem sic amet\n");
+			.toEqual("31==Lorem\n32==ipsum\ndolorem sic amet\n");
 	});
 	it("combined ulist and olist removal with starting value and option indention and other styles", function(){
 		expect(textVerionsCore("<ol start=\"3\"><li>Lorem</li><li><ul><li>ipsum</li><li>dolorem</li></ul></li></ol>sic amet", {listStyle: "indention", oIndentionChar: "=", uIndentionChar: "=", listIndentionTabs: "2"}))

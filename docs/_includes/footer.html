@@ -1,0 +1,29 @@
+<div id="footer" class="bg-gray sm-padding-tb center">
+		<div class="container600">
+			<div class="socials cols" style="display:flex;">
+        {% if site.facebook_username %}
+				<div class="w20p">
+					<a id="f-fb" href="https://facebook.com/{{ site.facebook_username }}">Facebook</a>
+        </div>
+        {% endif %}
+        {% if site.twitter_username %}
+				<div class="w20p">
+					<a id="f-tw" href="https://twitter.com/{{ site.twitter_username }}">Twitter</a>
+        </div>
+        {% endif %}        
+        {% if site.linkedin_username %}
+				<div class="w20p">
+					<a id="f-ln" href="https://linkedin.com/{{ site.linkedin_username }}">LinkedIn</a>
+        </div>
+        {% endif %}
+        {% if site.google_username %}
+				<div class="w20p">
+					<a id="f-gp" href="https://plus.google.com/{{ site.github_username }}">Google+</a>
+        </div>
+        {% endif %}
+			</div>
+			<p>
+				2017 @ COPYRIGHT - EDMDESIGNER
+			</p>
+		</div>
+	</div>

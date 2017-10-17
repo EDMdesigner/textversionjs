@@ -1,0 +1,78 @@
+.button {
+	display: inline-block;
+
+	padding: 10px;
+	margin-top: 15px;
+
+	border-radius: 30px;
+
+	font-size: 16px;
+	line-height: 16px;
+
+	text-decoration: none;
+
+	transition: all .5s;
+}
+
+.button:hover {
+	box-shadow: 2px 2px 5px #888888;
+}
+
+.header-button {
+	display: block;
+
+	font-size: 20px;
+	line-height: 35px;
+
+	text-align: center;
+	text-decoration: none;
+
+	transition: all .5s;
+}
+
+.new-decorator {
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	margin-left: -7px;
+	margin-top: -5px;
+}
+
+.socials {
+	display: flex;
+}
+
+.socials a {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    overflow: hidden;
+    text-indent: -999px;
+    background: url(img/socials.png) 0 0 no-repeat;
+}
+
+.socials a#f-fb {
+	background-position: 0 -50px;
+}
+.socials a#f-tw {
+	background-position: 0 -73px;
+}
+.socials a#f-ln {
+	background-position: 0 -97px;
+}
+.socials a#f-gp {
+	background-position: 0 -123px;
+}
+.socials a#f-rss {
+	background-position: 0 -150px;
+}
+
+@media all and (max-width: 599px) {
+	.button {
+		display: block;
+		margin: 30px 50px;
+		padding: 20px;
+
+		text-align: center;
+	}
+}

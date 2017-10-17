@@ -1,0 +1,107 @@
+.container600 {
+	width: 600px;
+	margin: 0 auto;
+}
+
+.container800 {
+	width: 800px;
+	margin: 0 auto;
+}
+
+.cols > .w33p {
+	width: 33.33%;
+	float: left; 
+}
+
+.cols > .w66p {
+	width: 66.66%;
+	float: left;
+}
+
+.cols > .w50p {
+	width: 50%;
+	float: left;
+}
+
+.cols > .w25p {
+	width: 25%;
+	float: left;
+}
+
+.cols > .w20p {
+	width: 20%;
+	flex-grow: 1;
+}
+
+.cols:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.cols-r > .w33p {
+	width: 33.33%;
+	float: right; 
+}
+
+.cols-r > .w66p {
+	width: 66.66%;
+	float: right;
+}
+
+.cols-r > .w50p {
+	width: 50%;
+	float: right;
+}
+
+.cols-r > .w25p {
+	width: 25%;
+	float: right;
+}
+
+.cols-r > .w20p {
+	width: 20%;
+	float: right;
+}
+
+.cols-r:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.clr {
+	clear: both;
+}
+
+@media all and (max-width: 799px) {
+	.container800 {
+		width: 100%;
+	}
+}
+
+@media all and (max-width: 599px) {
+	.container600 {
+		width: 100%;
+	}
+
+	.reorder > .w33p {
+		width: 100%;
+	}
+
+	.reorder > .w66p {
+		width: 100%;
+	}
+
+	.reorder > .w50p {
+		width: 100%;
+	}
+
+	.reorder > .w25p {
+		width: 100%;
+	}
+
+	.reorder > .w20p {
+		width: 100%;
+	}
+}

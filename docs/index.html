@@ -1,0 +1,39 @@
+---
+layout: default
+---
+<script src="js/textversion.js"></script>
+
+<div class="home">
+  <h1>TextVersionJS</h1>
+
+  <p>{{ site.description }}</p>
+  <p>This tool is based on the <a title="An open source module for generating the text version of an HTML email." href="http://textversionjs.com/">TextVersionJS</a> open source project. Feel free to use it any time in your projects!</p>
+
+  <h2>HTML to plain text converter online</h2>
+
+  <p>You just have to copy & paste your email HTML code in the first textarea and press the generate button.</p>
+
+  <h3>Paste your email HTML here</h3>
+  <div>
+    <textarea id="htmlTextarea"></textarea>
+  </div>
+  
+  <button id="generateButton" onclick="generate()">Generate</button>
+  
+  
+  <h3>The text version</h3>
+  <div>
+    <textarea id="textVersionTextarea"></textarea>
+  </div>
+
+  <script>
+    function generate() {
+      var htmlTextarea = document.getElementById("htmlTextarea");
+      var textVersionTextarea = document.getElementById("textVersionTextarea");
+
+      textVersionTextarea.value = textversion(htmlTextarea.value);
+
+      ga("send", "event", "generate");
+    }
+  </script>
+</div>
