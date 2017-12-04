@@ -36,7 +36,9 @@ pipeline {
 				branch "master"
 			}
 			steps {
-				sh 'npm publish'
+                withNPM(npmrcConfig:'npmrc-global') {
+                    sh 'npm publish'
+                }
 			}
 		}
 	}

@@ -26,6 +26,7 @@ listStyle         | string   | No           | "indention"   | Define list appear
 uIndentionChar    | string   | No           | "-"           | If listStyle is indention, uIndentionChar is the character that fills the indention for unordered lists
 oIndentionChar    | string   | No           | "-"           | If listStyle is indention, oIndentionChar is the character that fills the indention for ordered lists after the heading number
 listIndentionTabs | int      | No           | 3             | If listStyle is indention, listIndentionTabs is the width of the indention
+keepNbsps         | boolean  | No           | false         | Define the behaviour of the non-braking spaces. If set to true, nbsps are not collapsed to single space.
 
 ### linkProcess
 
