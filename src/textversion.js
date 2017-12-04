@@ -16,6 +16,7 @@ function htmlToPlainText(htmlText, styleConfig) {
 	var uIndentionChar = "-";
 	var listIndentionTabs = 3;
 	var oIndentionChar = "-";
+	var keepNbsps = false;
 
 	// or accept user defined config
 	if(!!styleConfig){
@@ -39,6 +40,9 @@ function htmlToPlainText(htmlText, styleConfig) {
 		}
 		if(!!styleConfig.oIndentionChar) {
 			oIndentionChar = styleConfig.oIndentionChar;
+		}
+		if(!!styleConfig.keepNbsps) {
+			keepNbsps = styleConfig.keepNbsps;
 		}
 	}
 
@@ -149,8 +153,14 @@ function htmlToPlainText(htmlText, styleConfig) {
 	// remove duplicated empty lines
 	tmp = tmp.replace(/\n\n+/gi, "\n");
 
-	// remove duplicated spaces including non braking spaces
-	tmp = tmp.replace(/( |&nbsp;|\t)+/gi, " ");
+	if (keepNbsps) {
+		// remove duplicated spaces including non braking spaces
+		tmp = tmp.replace(/( |\t)+/gi, " ");
+		tmp = tmp.replace(/&nbsp;/gi, " ");
+	} else {
+		// remove duplicated spaces including non braking spaces
+		tmp = tmp.replace(/( |&nbsp;|\t)+/gi, " ");
+	}
 
 	// remove line starter spaces
 	tmp = tmp.replace(/\n +/gi, "\n");
