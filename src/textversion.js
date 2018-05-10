@@ -52,8 +52,14 @@ function htmlToPlainText(htmlText, styleConfig) {
 	var tmp = String(htmlText).replace(/\n|\r/g, " ");
 
 	// remove everything before and after <body> tags including the tag itself
-	tmp = tmp.replace(/<\/body>.*/i, "");
-	tmp = tmp.replace(/.*<body[^>]*>/i, "");
+	const bodyEndMatch = tmp.match(/<\/body>/i);
+	if (bodyEndMatch) {
+		tmp = tmp.substring(0, bodyEndMatch.index);
+	}
+	const bodyStartMatch = tmp.match(/<body[^>]*>/i);
+	if (bodyStartMatch) {
+		tmp = tmp.substring(bodyStartMatch.index + bodyStartMatch[0].length, tmp.length);
+	}
 
 	// remove inbody scripts and styles
 	tmp = tmp.replace(/<(script|style)( [^>]*)*>((?!<\/\1( [^>]*)*>).)*<\/\1>/gi, "");
