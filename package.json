@@ -1,6 +1,6 @@
 {
   "name": "textversionjs",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "A tool for generating the text version of an html email.",
   "main": "src/textversion.js",
   "scripts": {
@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/EDMdesigner/textversionjs#readme",
   "devDependencies": {
-    "edm-supergulp": "0.2.7",
+    "edm-supergulp": "0.2.8",
     "gulp": "^3.9.1"
   }
 }
