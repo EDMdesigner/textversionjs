@@ -13,7 +13,7 @@ The function that generates plain text from email htmls.
 Param       | Type     | Required     | Default value | Description
 ---         |---       |---           |---            |---
 htmlText    | string   | Yes          |               | The html version of the email
-styleConfig | json     | No           |               | Options for converting
+styleConfig | json/javascript object     | No           |               | Options for converting
 
 ### styleConfig
 
@@ -74,8 +74,8 @@ var plainText = textVersion(htmlText);
 var textVersion = require("textversionjs");
 var htmlText = "<p>Lorem <a href=\"http://foo.foo\">ipsum</a> dolor sic amet</p>";
 
-var styleConfig: {
-	linkStyle: function(href, linkText){
+var styleConfig = {
+	linkProcess: function(href, linkText){
 		return linkText + " " + "(" + href + ")";
 	}
 };
@@ -93,7 +93,7 @@ var textVersion = require("textversionjs");
 var htmlText = "<h1>Lorem ipsum</h1>" +
 				"<p>Lorem ipsum dolor sic amet</p>";
 
-var styleConfig: {
+var styleConfig = {
 	headingStyle: "hashify"
 };
 
@@ -118,7 +118,7 @@ var htmlText = "<ul>" +
 					"<li>ipsum</li>" +
 				"</ol>";
 
-var styleConfig: {
+var styleConfig = {
 	headingStyle: "indention",
 	uIndentionChar: ".";
 	listIndentionTabs: 2;
