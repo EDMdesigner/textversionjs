@@ -142,8 +142,8 @@ function htmlToPlainText(htmlText, styleConfig) {
 		});
 	}
 
-	// replace <br>s, <td>s, <divs> and <p>s with linebreaks
-	tmp = tmp.replace(/<br( [^>]*)*>|<p( [^>]*)*>|<\/p( [^>]*)*>|<div( [^>]*)*>|<\/div( [^>]*)*>|<td( [^>]*)*>|<\/td( [^>]*)*>/gi, "\n");
+	// replace <td>s, <divs> and <p>s with linebreaks
+	tmp = tmp.replace(/<p( [^>]*)*>|<\/p( [^>]*)*>|<div( [^>]*)*>|<\/div( [^>]*)*>|<td( [^>]*)*>|<\/td( [^>]*)*>/gi, "\n");
 
 	// replace <a href>b<a> links with b (href) or as described in the linkProcess function
 	tmp = tmp.replace(/<a[^>]*href="([^"]*)"[^>]*>([^<]+)<\/a[^>]*>/gi, function(str, href, linkText) {
@@ -156,8 +156,11 @@ function htmlToPlainText(htmlText, styleConfig) {
 	// remove whitespace from empty lines excluding nbsp
 	tmp = tmp.replace(/\n[ \t\f]*/gi, "\n");
 
-	// remove duplicated empty lines
+	// remove duplicated empty lines caused by <p></p><p></p> etc
 	tmp = tmp.replace(/\n\n+/gi, "\n");
+	
+	// replace line breaks <br>s
+	tmp = tmp.replace(/<br( [^>]*)*>/gi, "\n");
 
 	if (keepNbsps) {
 		// remove duplicated spaces including non braking spaces
