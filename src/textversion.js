@@ -123,7 +123,9 @@ function htmlToPlainText(htmlText, styleConfig) {
 
 	// handle headings
 	if(headingStyle === "linebreak") {
-		tmp = tmp.replace(/<h([1-6])[^>]*>([^<]*)<\/h\1>/gi, "\n$2\n");
+		tmp = tmp.replace(/<h([1-6])[^>]*>(((?!<\/h\1>).)*)<\/h\1>/gi, function(str, p1, p2) {
+			return "\n" + p2 + "\n";
+		});
 	}
 	else if(headingStyle === "underline") {
 		tmp = tmp.replace(/<h1[^>]*>(((?!<\/h1>).)*)<\/h1>/gi, function(str, p1) {
@@ -137,7 +139,7 @@ function htmlToPlainText(htmlText, styleConfig) {
 		});
 	}
 	else if(headingStyle === "hashify") {
-		tmp = tmp.replace(/<h([1-6])[^>]*>([^<]*)<\/h\1>/gi, function(str, p1, p2) {
+		tmp = tmp.replace(/<h([1-6])[^>]*>(((?!<\/h\1>).)*)<\/h\1>/gi, function(str, p1, p2) {
 			return "\n&nbsp;\n" + populateChar("#", p1) + " " + p2 + "\n&nbsp;\n";
 		});
 	}
